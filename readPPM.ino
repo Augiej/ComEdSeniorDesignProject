@@ -60,30 +60,36 @@ void loop() {
  if(PWMSG[0] < 30){
   PWMSG[0] = 0;
  }
- 
+ //see what controls make each threshold
+ //left
  if(PWMSG[1] < 150){
   go = 1;
   dir1 = 0;
   dir2 = 1;
  }
+ //right
  else if(PWMSG[1] > 350){
   go = 1;
   dir1 = 1;
   dir2 = 0;
  }
+ //forward
  else if(PWMSG[2] < 150) {
   go = 1;
   dir1 = 0;
   dir2 = 0;
  }
+ //back
  else if(PWMSG[2] > 300){
   go = 1;
   dir1 = 1;
   dir2 = 1;
  }
+ //else stay put
  else{
   go = 0;
  }
+ //write pwms to motor control
  if(go == 1){
   digitalWrite(pinDir1, dir1);
   digitalWrite(pinDir2, dir2);
